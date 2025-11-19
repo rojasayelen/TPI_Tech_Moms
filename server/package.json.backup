@@ -1,0 +1,6 @@
+# Backup para agregar scripts específicos
+"scripts": {
+  "test": "jest --coverage",
+  "test:models": "jest __tests__/models --coverage",
+  "test:working": "jest __tests__/models --coverage --verbose"
+}
