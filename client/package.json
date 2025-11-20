@@ -7,14 +7,16 @@
     "build": "vite build",
     "preview": "vite preview",
     "build:prod": "vite build --mode production",
-    "serve": "vite preview --port 4173"
+    "serve": "vite preview --port 4173",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "axios": "^1.12.1",
     "date-fns": "^4.1.0",
     "jspdf": "^3.0.3",
-
     "lucide-react": "^0.552.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.19.4",
@@ -26,6 +28,7 @@
     "yup": "^1.7.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",

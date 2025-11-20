@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { findUserById } = require('../models');
+const logger = require('../config/logger');
 
 // JWT authentication middleware
 const authenticateToken = async (req, res, next) => {
@@ -31,11 +32,14 @@ const authenticateToken = async (req, res, next) => {
     next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
+      logger.warn('Token expired for request:', req.originalUrl);
       return res.status(401).json({ success: false, message: 'Token expired', code: 'TOKEN_EXPIRED' });
     }
     if (error.name === 'JsonWebTokenError') {
+      logger.warn('Invalid token for request:', req.originalUrl);
       return res.status(401).json({ success: false, message: 'Invalid token', code: 'INVALID_TOKEN' });
     }
+    logger.error('Auth middleware error:', error);
     return res.status(500).json({ success: false, message: 'Internal server error', code: 'INTERNAL_ERROR' });
   }
 };
