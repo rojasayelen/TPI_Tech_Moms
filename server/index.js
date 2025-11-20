@@ -4,12 +4,13 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const logger = require('./config/logger');
 
 const startServer = async () => {
   try {
-    console.log('Connecting to MongoDB...');
+    logger.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('MongoDB connected successfully');
+    logger.info('MongoDB connected successfully');
 
     require('./models');
 
@@ -164,19 +165,19 @@ const startServer = async () => {
     app.use(errorHandler);
 
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`API URL: http://localhost:${PORT}`);
-      console.log(`Auth endpoints: http://localhost:${PORT}/api/auth`);
-      console.log(`Dashboard endpoints: http://localhost:${PORT}/api/dashboard`);
-      console.log(`Auditoría endpoints: http://localhost:${PORT}/api/auditoria`);
-      console.log(`Cursos endpoints: http://localhost:${PORT}/api/cursos`);
-      console.log(`Clases endpoints: http://localhost:${PORT}/api/clases`);
-      console.log(`Financial endpoints: http://localhost:${PORT}/api/cobros`);
+      logger.info(`Server running on port ${PORT}`);
+      logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+      logger.info(`API URL: http://localhost:${PORT}`);
+      logger.info(`Auth endpoints: http://localhost:${PORT}/api/auth`);
+      logger.info(`Dashboard endpoints: http://localhost:${PORT}/api/dashboard`);
+      logger.info(`Auditoría endpoints: http://localhost:${PORT}/api/auditoria`);
+      logger.info(`Cursos endpoints: http://localhost:${PORT}/api/cursos`);
+      logger.info(`Clases endpoints: http://localhost:${PORT}/api/clases`);
+      logger.info(`Financial endpoints: http://localhost:${PORT}/api/cobros`);
     });
 
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    logger.error('❌ Failed to start server:', error);
     process.exit(1);
   }
 };

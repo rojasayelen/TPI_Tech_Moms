@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const { BaseUser, Estudiante, Profesor, Admin, getUserModel, findUserByEmail, findUserById } = require('../models');
+const logger = require('../config/logger');
 
 // auxiliary function to handle validation errors
 const handleValidationErrors = (req, res) => {
@@ -185,7 +186,7 @@ const register = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error en register:', error);
+    logger.error('Error en register:', error);
     
     
     if (error.code === 11000) {
@@ -286,6 +287,7 @@ const login = async (req, res) => {
 
     try {
       const userJSON = user.toJSON();
+      logger.info(`Login exitoso para usuario: ${user.email} (${user.role})`);
       res.json({
         success: true,
         message: 'Login exitoso',
@@ -295,13 +297,13 @@ const login = async (req, res) => {
         }
       });
     } catch (jsonError) {
-      console.error('Error convirtiendo usuario a JSON:', jsonError);
+      logger.error('Error convirtiendo usuario a JSON:', jsonError);
       throw jsonError;
     }
 
   } catch (error) {
-    console.error('Error en login:', error);
-    console.error('Error stack:', error.stack);
+    logger.error('Error en login:', error);
+    logger.error('Error stack:', error.stack);
     res.status(500).json({
       success: false,
       message: 'Error interno del servidor',
