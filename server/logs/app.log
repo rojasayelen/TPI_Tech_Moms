@@ -90,3 +90,36 @@
 {"level":"info","message":"Financial endpoints: http://localhost:5000/api/cobros","service":"consultora-idiomas","timestamp":"2025-11-20 15:51:50"}
 {"level":"info","message":"Connecting to MongoDB...","service":"consultora-idiomas","timestamp":"2025-11-20 15:52:31"}
 {"level":"info","message":"MongoDB connected successfully","service":"consultora-idiomas","timestamp":"2025-11-20 15:52:32"}
+{"level":"info","message":"Connecting to MongoDB...","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:30"}
+{"level":"info","message":"MongoDB connected successfully","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:30"}
+{"level":"info","message":"Server running on port 5000","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Environment: development","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"API URL: http://localhost:5000","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Auth endpoints: http://localhost:5000/api/auth","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Dashboard endpoints: http://localhost:5000/api/dashboard","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Auditoría endpoints: http://localhost:5000/api/auditoria","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Cursos endpoints: http://localhost:5000/api/cursos","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Clases endpoints: http://localhost:5000/api/clases","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Financial endpoints: http://localhost:5000/api/cobros","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:31"}
+{"level":"info","message":"Connecting to MongoDB...","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:40"}
+{"level":"info","message":"MongoDB connected successfully","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Server running on port 5000","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Environment: development","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"API URL: http://localhost:5000","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Auth endpoints: http://localhost:5000/api/auth","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Dashboard endpoints: http://localhost:5000/api/dashboard","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Auditoría endpoints: http://localhost:5000/api/auditoria","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Cursos endpoints: http://localhost:5000/api/cursos","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Clases endpoints: http://localhost:5000/api/clases","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Financial endpoints: http://localhost:5000/api/cobros","service":"consultora-idiomas","timestamp":"2025-11-20 15:54:41"}
+{"level":"info","message":"Connecting to MongoDB...","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"MongoDB connected successfully","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Server running on port 5000","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Environment: development","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"API URL: http://localhost:5000","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Auth endpoints: http://localhost:5000/api/auth","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Dashboard endpoints: http://localhost:5000/api/dashboard","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Auditoría endpoints: http://localhost:5000/api/auditoria","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Cursos endpoints: http://localhost:5000/api/cursos","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Clases endpoints: http://localhost:5000/api/clases","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}
+{"level":"info","message":"Financial endpoints: http://localhost:5000/api/cobros","service":"consultora-idiomas","timestamp":"2025-11-20 15:55:05"}

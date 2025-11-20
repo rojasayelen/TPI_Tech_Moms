@@ -1,0 +1,111 @@
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                           CI/CD PIPELINE DETALLADO                             │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────┐
+│   TRIGGER   │
+│             │
+│ Push/PR to  │
+│ GitHub      │
+│ Repository  │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ GitHub      │
+│ Actions     │
+│ Workflow    │
+│ Starts      │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Install     │
+│ Dependencies│
+│             │
+│ npm install │
+│ (both apps) │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐    ┌─────────────┐
+│ Backend     │    │ Frontend    │
+│ Tests       │    │ Tests       │
+│             │    │             │
+│ Jest Tests  │    │ Playwright  │
+│ Unit Tests  │    │ E2E Tests   │
+└──────┬──────┘    └──────┬──────┘
+       │                  │
+       └─────────┬────────┘
+                 │
+                 ▼
+         ┌─────────────┐
+         │ Tests Pass? │
+         │             │
+         │ ✅ Success  │
+         │ ❌ Failure  │
+         └──────┬──────┘
+                │
+        ┌───────┴───────┐
+        │               │
+        ▼               ▼
+┌─────────────┐  ┌─────────────┐
+│ ✅ BUILD    │  │ ❌ PIPELINE │
+│ DOCKER      │  │ FAILS       │
+│ IMAGES      │  │             │
+│             │  │ Stop Here   │
+│ Frontend    │  │ Send Alert  │
+│ Backend     │  └─────────────┘
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Push to     │
+│ Docker Hub  │
+│             │
+│ Registry    │
+│ Updated     │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Deploy to   │
+│ Production  │
+│             │
+│ Pull Images │
+│ Start Containers
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ ✅ DEPLOYMENT│
+│ COMPLETE    │
+│             │
+│ System      │
+│ Online      │
+└─────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              TECNOLOGÍAS USADAS                                │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+GitHub Actions:
+├── Workflow YAML
+├── Node.js Setup
+├── Docker Build
+└── Deploy Scripts
+
+Testing:
+├── Backend: Jest + Supertest
+├── Frontend: Playwright E2E
+└── Coverage Reports
+
+Docker:
+├── Multi-stage Builds
+├── Image Optimization
+└── Container Registry
+
+Deployment:
+├── Production Environment
+├── Health Checks
+└── Rollback Strategy
