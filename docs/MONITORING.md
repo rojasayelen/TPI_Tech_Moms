@@ -38,20 +38,20 @@ server/
 ### Logs Implementados
 
 #### Autenticación
-- ✅ Login exitoso con email y rol
-- ✅ Errores de login con detalles
-- ✅ Tokens expirados/inválidos
-- ✅ Errores de registro de usuarios
+- Login exitoso con email y rol del usuario
+- Errores de login con información detallada
+- Tokens expirados o inválidos
+- Errores durante el registro de usuarios
 
 #### Sistema
-- ✅ Inicio del servidor con puerto y endpoints
-- ✅ Conexión a MongoDB
-- ✅ Errores críticos del sistema
+- Inicio del servidor con puerto y endpoints disponibles
+- Conexión exitosa a MongoDB
+- Errores críticos del sistema
 
 #### Base de Datos
-- ✅ Errores de conexión
-- ✅ Operaciones fallidas
-- ✅ Validaciones de datos
+- Errores de conexión a la base de datos
+- Operaciones que fallan
+- Errores de validación de datos
 
 ### Cómo Ver Logs
 

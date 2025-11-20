@@ -42,15 +42,15 @@
          ┌─────────────┐
          │ Tests Pass? │
          │             │
-         │ ✅ Success  │
-         │ ❌ Failure  │
+         │ Success     │
+         │ Failure     │
          └──────┬──────┘
                 │
         ┌───────┴───────┐
         │               │
         ▼               ▼
 ┌─────────────┐  ┌─────────────┐
-│ ✅ BUILD    │  │ ❌ PIPELINE │
+│ BUILD       │  │ PIPELINE    │
 │ DOCKER      │  │ FAILS       │
 │ IMAGES      │  │             │
 │             │  │ Stop Here   │
@@ -78,7 +78,7 @@
        │
        ▼
 ┌─────────────┐
-│ ✅ DEPLOYMENT│
+│ DEPLOYMENT  │
 │ COMPLETE    │
 │             │
 │ System      │

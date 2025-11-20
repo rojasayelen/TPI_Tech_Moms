@@ -101,10 +101,10 @@ graph LR
     D --> F{Tests Pass?}
     E --> F
     F -->|Yes| G[Build Docker Images]
-    F -->|No| H[❌ Pipeline Fails]
+    F -->|No| H[Pipeline Fails]
     G --> I[Push to Docker Hub]
     I --> J[Deploy to Production]
-    J --> K[✅ Deployment Complete]
+    J --> K[Deployment Complete]
     
     style A fill:#f9f9f9
     style B fill:#2088ff
