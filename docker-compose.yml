@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: consultora-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=consultora_idiomas
+    networks:
+      - consultora-network
+    restart: always
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/consultora_idiomas --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: consultora-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/consultora_idiomas
+      - JWT_SECRET=tech_moms_secret_key_2024_change_in_production
+      - PORT=5000
+      - NODE_ENV=production
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - consultora-network
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5000/api/auth/test"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend React
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: consultora-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - consultora-network
+    restart: always
+
+# Red para comunicación entre contenedores
+networks:
+  consultora-network:
+    driver: bridge
+
+# Volumen para persistir datos de MongoDB
+volumes:
+  mongodb_data:
