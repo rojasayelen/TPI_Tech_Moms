@@ -1,6 +1,5 @@
-/**
- * Tests del módulo de Auditoría
- */
+// Disabled test: moved to disabled/ because it connects to the real MongoDB and
+// can modify or delete production/test databases. Kept here for reference.
 
 const request = require('supertest')
 const mongoose = require('mongoose')
@@ -23,8 +22,8 @@ describe.skip('Auditoría API (DISABLED)', () => {
     const loginResponse = await request(app)
       .post('/api/auth/login')
       .send({
-        email: 'admin@example.com', // Cambiar por tu admin de testing
-        password: 'Admin123' // Cambiar por tu password de testing
+        email: 'admin@example.com',
+        password: 'Admin123'
       })
     
     adminToken = loginResponse.body.token
