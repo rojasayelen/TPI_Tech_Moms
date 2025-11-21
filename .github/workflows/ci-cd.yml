@@ -101,10 +101,10 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/consultora-backend:latest
 
       # Construir imagen del CLIENT
-      - name: Build y Push Client
-        uses: docker/build-push-action@v4
-        with:
-          context: ./client
-          file: ./client/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/consultora-frontend:latest
+      # - name: Build y Push Client
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: ./client
+      #     file: ./client/Dockerfile
+      #     push: true
+      #     tags: ${{ secrets.DOCKER_USERNAME }}/consultora-frontend:latest
