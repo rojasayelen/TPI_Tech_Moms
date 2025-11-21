@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -119,19 +119,13 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,34 +147,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// models/Horario.js
-const mongoose = <span class="cstat-no" title="statement not covered" >require('mongoose');</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span></td><td class="text"><pre class="prettyprint lang-js">// models/Horario.js
+const mongoose = require('mongoose');
 &nbsp;
 /**
  * Define un bloque de horario estándar.
  * Ej: Lunes, 09:00 a 11:00
  */
-const horarioSchema = <span class="cstat-no" title="statement not covered" >new mongoose.Schema({</span>
+const horarioSchema = new mongoose.Schema({
   dia: {
     type: String,
     required: true,
@@ -208,14 +208,14 @@ const horarioSchema = <span class="cstat-no" title="statement not covered" >new 
 });
 &nbsp;
 // Virtual para mostrar "Lunes 09:00-11:00"
-<span class="cstat-no" title="statement not covered" >horarioSchema.virtual('display').get(<span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
+horarioSchema.virtual('display').get(<span class="fstat-no" title="function not covered" >fu</span>nction() {
   // Capitalizar día
   const diaCapitalizado = <span class="cstat-no" title="statement not covered" >this.dia.charAt(0).toUpperCase() + this.dia.slice(1);</span>
 <span class="cstat-no" title="statement not covered" >  return `${diaCapitalizado} ${this.horaInicio} - ${this.horaFin}`;</span>
 });
 &nbsp;
 // Middleware para auto-generar la descripción
-<span class="cstat-no" title="statement not covered" >horarioSchema.pre('save', <span class="fstat-no" title="function not covered" >fu</span>nction(next) {</span>
+horarioSchema.pre('save', <span class="fstat-no" title="function not covered" >fu</span>nction(next) {
 <span class="cstat-no" title="statement not covered" >  if (this.isModified('dia') || this.isModified('horaInicio') || this.isModified('horaFin')) {</span>
     const diaCapitalizado = <span class="cstat-no" title="statement not covered" >this.dia.charAt(0).toUpperCase() + this.dia.slice(1);</span>
 <span class="cstat-no" title="statement not covered" >    this.descripcion = `${diaCapitalizado} ${this.horaInicio} - ${this.horaFin}`;</span>
@@ -224,18 +224,18 @@ const horarioSchema = <span class="cstat-no" title="statement not covered" >new 
 });
 &nbsp;
 // Índice para asegurar horarios únicos
-<span class="cstat-no" title="statement not covered" >horarioSchema.index({ dia: 1, horaInicio: 1, horaFin: 1 }, { unique: true });</span>
+horarioSchema.index({ dia: 1, horaInicio: 1, horaFin: 1 }, { unique: true });
 &nbsp;
-const Horario = <span class="cstat-no" title="statement not covered" >mongoose.model('Horario', horarioSchema);</span>
+const Horario = mongoose.model('Horario', horarioSchema);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = Horario;</span></pre></td></tr></table></pre>
+module.exports = Horario;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-20T13:52:49.243Z
+                at 2025-11-21T12:44:23.220Z
             </div>
         <script src="../prettify.js"></script>
         <script>
