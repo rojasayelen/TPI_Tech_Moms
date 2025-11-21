@@ -1,0 +1,103 @@
+name: CI/CD Pipeline
+
+# Esto define cuándo se ejecuta: al hacer push a main o dev
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # JOB 1: TEST BACKEND (SERVER)
+  test-backend:
+    runs-on: ubuntu-latest
+    
+    # Base de datos temporal solo para el test
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+    
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: server/package-lock.json
+
+    - name: Instalar dependencias Server
+      working-directory: ./server
+      run: npm ci
+
+    # Este paso correrá los tests si Dani los configuró.
+    # Si fallan, el pipeline te avisará.
+    - name: Correr Tests Server
+      working-directory: ./server
+      run: npm test
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }} 
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+  # JOB 2: TEST FRONTEND (CLIENT)
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: client/package-lock.json
+
+    - name: Instalar dependencias Client
+      working-directory: ./client
+      run: npm ci
+
+    - name: Correr Tests Client
+      working-directory: ./client
+      run: npm test
+
+  # JOB 3: BUILD & PUSH DOCKER
+  build-push-docker:
+    needs: [test-backend, test-frontend] # Espera a que los tests pasen
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' # Solo corre si estamos en main
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Login en Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Construir imagen del SERVER
+      - name: Build y Push Server
+        uses: docker/build-push-action@v4
+        with:
+          context: ./server
+          file: ./server/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/consultora-backend:latest
+
+      # Construir imagen del CLIENT
+      - name: Build y Push Client
+        uses: docker/build-push-action@v4
+        with:
+          context: ./client
+          file: ./client/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/consultora-frontend:latest

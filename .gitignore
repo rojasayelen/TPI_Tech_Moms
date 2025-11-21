@@ -6,7 +6,7 @@ yarn-error.log*
 
 # Environment variables
 .env
-.claude
+
 
 # Build outputs
 /client/build
@@ -21,9 +21,5 @@ yarn-error.log*
 Thumbs.db
 
 # Specific files
-HANDOFF_PARA_PROXIMO_CHAT.md
-PLAN_DE_ACCION_PROYECTO.md
-PLANTILLA_DOCUMENTACION_PRUEBAS.md
-no.md 
-
+PLAN_TRABAJO_DEVOPS_FINAL.node_modules
 
