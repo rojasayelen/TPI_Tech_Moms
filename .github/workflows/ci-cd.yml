@@ -35,7 +35,7 @@ jobs:
       run: npm ci
 
     # Este paso correrá los tests si Dani los configuró.
-    # Si fallan, el pipeline te avisará.
+    # Si fallan, el pipeline avisará.
     - name: Correr Tests Server
       working-directory: ./server
       run: npm test
@@ -43,6 +43,12 @@ jobs:
         MONGODB_URI: ${{ secrets.MONGODB_URI }} 
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
+    - name: Subir Coverage
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: coverage-report
+        path: server/coverage/    
   # JOB 2: TEST FRONTEND (CLIENT)
   test-frontend:
     runs-on: ubuntu-latest
