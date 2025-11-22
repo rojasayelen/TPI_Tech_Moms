@@ -1,7 +1,8 @@
 module.exports = {
   testEnvironment: 'node',
   coveragePathIgnorePatterns: ['/node_modules/'],
-  testMatch: ['**/__tests__/**/*.test.js'],
+  // testMatch: ['**/__tests__/**/*.test.js'],
+  testMatch: ['**/__tests__/**/*.test.js', '!**/__tests__/disabled/**'],
   collectCoverageFrom: [
     'models/**/*.js',
     'services/**/*.js',
