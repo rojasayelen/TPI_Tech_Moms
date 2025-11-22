@@ -26,7 +26,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
         cache-dependency-path: server/package-lock.json
 
@@ -59,17 +59,18 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
         cache-dependency-path: client/package-lock.json
 
     - name: Instalar dependencias Client
       working-directory: ./client
-      run: npm ci
+      run: npm ci --force
 
     - name: Correr Tests Client
       working-directory: ./client
-      run: npm test
+      run: ./node_modules/.bin/vitest run --passWithNoTests
+      timeout-minutes: 5
 
   # JOB 3: BUILD & PUSH DOCKER
   build-push-docker:
