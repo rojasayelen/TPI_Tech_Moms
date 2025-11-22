@@ -529,64 +529,50 @@ npm test
 
 ## Deployment Automático
 
-### Configuración para Plataformas Cloud
+### Configuración de Deployment en Render.com
 
-El proyecto está configurado para deployment automático en plataformas cloud compatibles con Docker.
-
-#### Archivos de Configuración
-
-**railway.toml** - Configuración para Railway.app:
-```toml
-[build]
-builder = "NIXPACKS"
-buildCommand = "cd server && npm ci --only=production"
-
-[deploy]
-startCommand = "cd server && npm start"
-watchPatterns = ["server/**"]
-```
-
-**render.yaml** - Configuración para Render.com:
-```yaml
-services:
-  - type: web
-    name: consultora-backend
-    runtime: docker
-    dockerfilePath: ./server/Dockerfile
-    dockerContext: ./server
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 5000
-```
+El backend está desplegado en **Render.com** utilizando Docker runtime.
 
 #### Variables de Entorno Requeridas
 
-Para deployment en producción, configurar las siguientes variables:
+Para deployment en producción, configurar las siguientes variables en Render Dashboard:
 
 ```bash
 MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/dbname
 JWT_SECRET=clave_secreta_segura
 NODE_ENV=production
-PORT=5000
 ```
 
-#### Instrucciones de Deployment
+**Nota:** No configurar `PORT` manualmente - Render lo asigna automáticamente.
 
-**Opción 1: Railway.app**
-1. Conectar repositorio de GitHub
-2. Las variables de entorno se configuran desde el dashboard
-3. Railway detectará automáticamente el railway.toml
-4. El deployment se actualiza automáticamente con cada push a main
+#### Instrucciones de Deployment en Render.com
 
-**Opción 2: Render.com**
-1. Crear nuevo Web Service desde GitHub
-2. Seleccionar el repositorio
-3. Configurar variables de entorno en Settings
-4. Render usa el render.yaml para la configuración automática
+1. **Crear Web Service**
+   - Conectar repositorio de GitHub
+   - Seleccionar branch: `main` (o la rama de deployment)
+   - Runtime: **Docker**
+   - Root Directory: `/server`
+   - Dockerfile Path: `./Dockerfile`
 
-**Opción 3: Docker local**
+2. **Configurar Environment Variables**
+   - Ir a Settings → Environment
+   - Agregar las variables requeridas (ver arriba)
+   - **Importante:** La key debe ser `MONGODB_URI` (no `MONGO_URI`)
+   - Save Changes
+
+3. **Build & Deploy Settings**
+   - Build Command: `npm ci` (automático con Docker)
+   - Start Command: `npm start` (definido en Dockerfile)
+   - Docker Context: `/server`
+
+4. **Deploy**
+   - Manual Deploy o automático con cada push a main
+   - El deployment tarda ~5-10 minutos
+
+#### Docker Local
+
+Para probar el deployment localmente:
+
 ```bash
 cd server
 docker build -t consultora-backend .
@@ -597,13 +583,13 @@ docker run -p 5000:5000 \
   consultora-backend
 ```
 
-#### Imágenes Docker Disponibles
+#### Imágenes Docker en CI/CD
 
-Las imágenes están publicadas en Docker Hub:
-- Backend: `ayelenrojas/consultora-backend:latest`
-- Frontend: `ayelenrojas/consultora-frontend:latest`
+Las imágenes se construyen y publican automáticamente en Docker Hub mediante GitHub Actions:
+- Backend: `<docker-username>/consultora-backend:latest`
+- Frontend: `<docker-username>/consultora-frontend:latest`
 
-Actualización automática mediante GitHub Actions en cada push a main.
+Actualización automática en cada push a `main`.
 
 ## Arquitectura del Sistema
 
