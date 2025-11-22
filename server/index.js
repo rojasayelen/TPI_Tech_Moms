@@ -1,10 +1,27 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const mongoose = require('mongoose');
 const logger = require('./config/logger');
 const app = require('./app');
 
 const startServer = async () => {
   try {
+    logger.info('Starting server...');
+    logger.info(`Environment: ${process.env.NODE_ENV}`);
+    logger.info(`PORT available: ${process.env.PORT ? 'YES' : 'NO'}`);
+    logger.info(`MONGODB_URI available: ${process.env.MONGODB_URI ? 'YES' : 'NO'}`);
+    logger.info(`JWT_SECRET available: ${process.env.JWT_SECRET ? 'YES' : 'NO'}`);
+
+    if (!process.env.MONGODB_URI) {
+      throw new Error('MONGODB_URI environment variable is not set');
+    }
+
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET environment variable is not set');
+    }
+
     logger.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
     logger.info('MongoDB connected successfully');
