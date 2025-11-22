@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 # Esto define cuándo se ejecuta: al hacer push a main o dev
 on:
   push:
-    branches: [ "main", "cicd/pipeline-setup-aye" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -75,8 +75,7 @@ jobs:
   build-push-docker:
     needs: [test-backend, test-frontend]
     runs-on: ubuntu-latest
-    #TODO: DEJAR SOLO REFS/HEADS/MAIN Y QUITAR LA OTRA RAMA
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/cicd/pipeline-setup-aye'
+    if: github.ref == 'refs/heads/main'
     
     steps:
       - name: Checkout código
