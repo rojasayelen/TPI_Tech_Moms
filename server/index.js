@@ -8,17 +8,25 @@ const app = require('./app');
 
 const startServer = async () => {
   try {
+    console.log('========================================');
+    console.log('DIAGNOSTICO DE VARIABLES DE ENTORNO');
+    console.log('========================================');
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('PORT:', process.env.PORT || 'NOT SET');
+    console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET (length: ' + process.env.MONGODB_URI.length + ')' : 'NOT SET');
+    console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'SET (length: ' + process.env.JWT_SECRET.length + ')' : 'NOT SET');
+    console.log('========================================');
+
     logger.info('Starting server...');
-    logger.info(`Environment: ${process.env.NODE_ENV}`);
-    logger.info(`PORT available: ${process.env.PORT ? 'YES' : 'NO'}`);
-    logger.info(`MONGODB_URI available: ${process.env.MONGODB_URI ? 'YES' : 'NO'}`);
-    logger.info(`JWT_SECRET available: ${process.env.JWT_SECRET ? 'YES' : 'NO'}`);
 
     if (!process.env.MONGODB_URI) {
+      console.error('ERROR: MONGODB_URI is not set!');
+      console.error('Available env vars:', Object.keys(process.env).sort());
       throw new Error('MONGODB_URI environment variable is not set');
     }
 
     if (!process.env.JWT_SECRET) {
+      console.error('ERROR: JWT_SECRET is not set!');
       throw new Error('JWT_SECRET environment variable is not set');
     }
 
