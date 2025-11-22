@@ -98,6 +98,8 @@ jobs:
           file: ./server/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/consultora-backend:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-backend:cache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-backend:cache,mode=max
 
       # Construir imagen del CLIENT
       # - name: Build y Push Client
