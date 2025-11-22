@@ -1,0 +1,345 @@
+
+> language-consultancy-client@1.0.0 test
+> vitest --run --sequence.concurrent=false
+
+
+[1m[46m RUN [49m[22m [36mv4.0.12 [39m[90mC:/Users/ayees/Desktop/practicas/TPI_Tech_Moms/client[39m
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mInicializa sin usuario cuando no hay token
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mLogin exitoso actualiza el estado del usuario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mLogin fallido establece error
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mLogout limpia el estado del usuario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mgetRedirectPath retorna ruta correcta según rol
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mgetRedirectPath retorna ruta correcta según rol
+[22m[39mgetRedirectPath called - user: { id: [33m1[39m, email: [32m'admin@example.com'[39m, role: [32m'admin'[39m }
+User role: admin
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mhasRole verifica correctamente el rol del usuario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museAuth Hook[2m > [22m[2mupdateProfile actualiza los datos del usuario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museLoginForm Hook[2m > [22m[2mInicializa con campos vacíos
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museLoginForm Hook[2m > [22m[2mhandleChange actualiza los campos del formulario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museLoginForm Hook[2m > [22m[2mhandleSubmit llama a login con los datos del formulario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/hooks/useAuth.test.jsx[2m > [22m[2museLoginForm Hook[2m > [22m[2mresetForm limpia los campos del formulario
+[22m[39mInitializing auth...
+No token found
+Auth initialization complete
+
+ [32m✓[39m tests/hooks/useAuth.test.jsx [2m([22m[2m11 tests[22m[2m)[22m[32m 218[2mms[22m[39m
+ [32m✓[39m tests/components/CourseCard.test.jsx [2m([22m[2m6 tests[22m[2m)[22m[33m 433[2mms[22m[39m
+     [33m[2m✓[22m[39m Llama a onSelectCourse cuando se hace clic en la tarjeta [33m 309[2mms[22m[39m
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mRenderiza formulario de login
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra campos email y password
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra error si campos vacíos al hacer submit
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mLlama a API al hacer submit con datos válidos
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mLlama a API al hacer submit con datos válidos
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mLlama a API al hacer submit con datos válidos
+[22m[39mLogin useEffect - isAuthenticated: [33mtrue[39m
+User: {
+  id: [33m1[39m,
+  email: [32m'test@example.com'[39m,
+  role: [32m'estudiante'[39m,
+  firstName: [32m'Test'[39m,
+  lastName: [32m'User'[39m
+}
+getRedirectPath called - user: {
+  id: [33m1[39m,
+  email: [32m'test@example.com'[39m,
+  role: [32m'estudiante'[39m,
+  firstName: [32m'Test'[39m,
+  lastName: [32m'User'[39m
+}
+User role: estudiante
+Redirect path: /dashboard/student
+getRedirectPath called - user: {
+  id: [33m1[39m,
+  email: [32m'test@example.com'[39m,
+  role: [32m'estudiante'[39m,
+  firstName: [32m'Test'[39m,
+  lastName: [32m'User'[39m
+}
+User role: estudiante
+Navigating to: /dashboard/student
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra mensaje de error cuando el login falla
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra mensaje de error cuando el login falla
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstderr[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra mensaje de error cuando el login falla
+[22m[39mLogin failed: { message: [32m'Credenciales inválidas'[39m }
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra mensaje de error cuando el login falla
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra estado de carga durante el submit
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstderr[2m | tests/components/RegisterStudent.test.jsx[2m > [22m[2mRegisterStudent Component[2m > [22m[2mMuestra errores de validación cuando el registro falla
+[22m[39mError registrando estudiante: {
+  response: {
+    data: {
+      success: [33mfalse[39m,
+      message: [32m'El email ya está registrado'[39m,
+      errors: [36m[Array][39m
+    }
+  }
+}
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra estado de carga durante el submit
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mMuestra información importante para usuarios
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mDeshabilita el botón cuando está submitting
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+Initializing auth...
+No token found
+Auth initialization complete
+Login useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+[90mstdout[2m | tests/components/Dashboard.test.jsx[2m > [22m[2mStudentDashboard Component[2m > [22m[2mRenderiza dashboard para estudiante
+[22m[39mStudentDashboard component rendering...
+StudentDashboard - user: [1mnull[22m
+StudentDashboard - mustChangePassword: [33mfalse[39m
+showPasswordChange (overridden): [33mfalse[39m
+Rendering main StudentDashboard content!
+Initializing auth...
+No token found
+Auth initialization complete
+StudentDashboard component rendering...
+StudentDashboard - user: [1mnull[22m
+StudentDashboard - mustChangePassword: [33mfalse[39m
+showPasswordChange (overridden): [33mfalse[39m
+Rendering main StudentDashboard content!
+
+[90mstdout[2m | tests/components/Dashboard.test.jsx[2m > [22m[2mStudentDashboard Component[2m > [22m[2mMuestra datos del usuario cuando está autenticado
+[22m[39mStudentDashboard component rendering...
+StudentDashboard - user: [1mnull[22m
+StudentDashboard - mustChangePassword: [33mfalse[39m
+showPasswordChange (overridden): [33mfalse[39m
+Rendering main StudentDashboard content!
+Initializing auth...
+No token found
+Auth initialization complete
+StudentDashboard component rendering...
+StudentDashboard - user: [1mnull[22m
+StudentDashboard - mustChangePassword: [33mfalse[39m
+showPasswordChange (overridden): [33mfalse[39m
+Rendering main StudentDashboard content!
+
+[90mstdout[2m | tests/components/Dashboard.test.jsx[2m > [22m[2mStudentDashboard Component[2m > [22m[2mCarga cursos del estudiante
+[22m[39mStudentDashboard component rendering...
+StudentDashboard - user: [1mnull[22m
+StudentDashboard - mustChangePassword: [33mfalse[39m
+showPasswordChange (overridden): [33mfalse[39m
+Rendering main StudentDashboard content!
+Initializing auth...
+No token found
+Auth initialization complete
+StudentDashboard component rendering...
+StudentDashboard - user: [1mnull[22m
+StudentDashboard - mustChangePassword: [33mfalse[39m
+showPasswordChange (overridden): [33mfalse[39m
+Rendering main StudentDashboard content!
+
+[90mstdout[2m | tests/components/Dashboard.test.jsx[2m > [22m[2mAdminDashboard Component[2m > [22m[2mRenderiza dashboard según rol admin
+[22m[39mCurrent pathname: /dashboard/admin
+Resetting management views
+Initializing auth...
+No token found
+Auth initialization complete
+
+[90mstdout[2m | tests/components/Dashboard.test.jsx[2m > [22m[2mAdminDashboard Component[2m > [22m[2mMuestra estadísticas del sistema
+[22m[39mCurrent pathname: /dashboard/admin
+Resetting management views
+Initializing auth...
+No token found
+Auth initialization complete
+
+ [32m✓[39m tests/components/Dashboard.test.jsx [2m([22m[2m5 tests[22m[2m)[22m[33m 418[2mms[22m[39m
+[90mstdout[2m | tests/components/Login.test.jsx[2m > [22m[2mLogin Component[2m > [22m[2mDeshabilita el botón cuando está submitting
+[22m[39mLogin useEffect - isAuthenticated: [33mfalse[39m
+User: [1mnull[22m
+getRedirectPath called - user: [1mnull[22m
+User role: [90mundefined[39m
+Redirect path: /login
+
+ [32m✓[39m tests/components/Login.test.jsx [2m([22m[2m8 tests[22m[2m)[22m[33m 3339[2mms[22m[39m
+     [33m[2m✓[22m[39m Renderiza formulario de login [33m 462[2mms[22m[39m
+     [33m[2m✓[22m[39m Llama a API al hacer submit con datos válidos [33m 764[2mms[22m[39m
+     [33m[2m✓[22m[39m Muestra mensaje de error cuando el login falla [33m 648[2mms[22m[39m
+     [33m[2m✓[22m[39m Muestra estado de carga durante el submit [33m 596[2mms[22m[39m
+     [33m[2m✓[22m[39m Deshabilita el botón cuando está submitting [33m 657[2mms[22m[39m
+ [32m✓[39m tests/components/RegisterStudent.test.jsx [2m([22m[2m10 tests[22m[2m)[22m[33m 6603[2mms[22m[39m
+     [33m[2m✓[22m[39m Permite ingresar datos en los campos [33m 1275[2mms[22m[39m
+     [33m[2m✓[22m[39m Muestra errores de validación cuando el registro falla [33m 1052[2mms[22m[39m
+     [33m[2m✓[22m[39m Muestra mensaje de éxito cuando el registro es exitoso [33m 929[2mms[22m[39m
+     [33m[2m✓[22m[39m Llama a onSuccess cuando se hace clic en "Cerrar y Continuar" [33m 1071[2mms[22m[39m
+     [33m[2m✓[22m[39m Muestra estado de carga durante el submit [33m 865[2mms[22m[39m
+     [33m[2m✓[22m[39m Capitaliza nombres y apellidos antes de enviar [33m 872[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m      Tests [22m [1m[32m40 passed[39m[22m[90m (40)[39m
+[2m   Start at [22m 18:30:06
+[2m   Duration [22m 9.94s[2m (transform 2.33s, setup 3.52s, collect 5.16s, tests 11.01s, environment 9.51s, prepare 213ms)[22m
+
