@@ -8,12 +8,14 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/setup.js'],
-    pool: 'forks',
+    pool: 'threads',
     poolOptions: {
-      forks: {
-        singleFork: true
+      threads: {
+        singleThread: true
       }
     },
+    maxConcurrency: 1,
+    fileParallelism: false,
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
