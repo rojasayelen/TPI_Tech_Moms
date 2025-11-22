@@ -70,8 +70,6 @@ jobs:
     - name: Correr Tests Client
       working-directory: ./client
       run: npm test
-      timeout-minutes: 2
-      continue-on-error: true
 
   # JOB 3: BUILD & PUSH DOCKER
   build-push-docker:
