@@ -986,11 +986,51 @@ VITE_NODE_ENV=development
 - [ ] Componentes de interfaz en desarrollo
 - [ ] Integración con backend pendiente
 
+## Roles del Equipo
+
+Este proyecto fue desarrollado por el equipo Tech Moms como trabajo integrador de DevOps.
+
+### Distribución de Responsabilidades
+
+**Ayelén (Aye)**
+- Configuración y mantenimiento del pipeline CI/CD
+- Implementación de GitHub Actions workflows
+- Integración con Docker Hub
+- Configuración de secretos y variables de entorno
+- Documentación del proceso de CI/CD
+
+**Daniela (Dani)**
+- Desarrollo de tests unitarios para el backend
+- Implementación de suite de tests con Jest
+- Tests de modelos y API endpoints
+- Configuración de coverage reports
+- Documentación de testing backend
+
+**Verónica (Vero)**
+- Implementación de tests E2E con Playwright
+- Configuración del sistema de logging con Winston
+- Diseño de diagramas de arquitectura
+- Diagramas del pipeline DevOps
+- Documentación de monitoreo
+
+**Romina (Roma)**
+- Dockerización de backend y frontend
+- Creación de Dockerfiles optimizados
+- Configuración de docker-compose.yml
+- Publicación de imágenes en Docker Hub
+- Documentación de Docker y deployment
+
+**Lorena (Lore)**
+- Desarrollo de tests para frontend
+- Configuración de Vitest/React Testing Library
+- Integración de tests en el pipeline CI/CD
+- Validación de componentes React
+
 ## Licencia y Créditos
 
 **Proyecto Académico** - Sistema desarrollado para PPIV (Programación de Proyectos IV)
 
 **Tecnologías Open Source utilizadas:**
 - React, Express, MongoDB, Mongoose, JWT
-- Vite, Thunder Client, Postman  
+- Vite, Thunder Client, Postman
 - Node.js ecosystem completo

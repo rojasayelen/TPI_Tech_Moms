@@ -50,31 +50,32 @@ jobs:
         name: coverage-report
         path: server/coverage/    
   # JOB 2: TEST FRONTEND (CLIENT)
-  # test-frontend:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout código
-  #     uses: actions/checkout@v3
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v3
 
-  #   - name: Setup Node.js
-  #     uses: actions/setup-node@v3
-  #     with:
-  #       node-version: '18'
-  #       cache: 'npm'
-  #       cache-dependency-path: client/package-lock.json
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: client/package-lock.json
 
-  #   - name: Instalar dependencias Client
-  #     working-directory: ./client
-  #     run: npm ci
+    - name: Instalar dependencias Client
+      working-directory: ./client
+      run: npm ci
 
-  #   - name: Correr Tests Client
-  #     working-directory: ./client
-  #     run: npm test
+    - name: Correr Tests Client
+      working-directory: ./client
+      run: npm test
 
   # JOB 3: BUILD & PUSH DOCKER
   build-push-docker:
-    needs: [test-backend]
+    needs: [test-backend, test-frontend]
     runs-on: ubuntu-latest
+    #TODO: DEJAR SOLO REFS/HEADS/MAIN Y QUITAR LA OTRA RAMA
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/cicd/pipeline-setup-aye'
     
     steps:
@@ -102,10 +103,12 @@ jobs:
           cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-backend:cache,mode=max
 
       # Construir imagen del CLIENT
-      # - name: Build y Push Client
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: ./client
-      #     file: ./client/Dockerfile
-      #     push: true
-      #     tags: ${{ secrets.DOCKER_USERNAME }}/consultora-frontend:latest
+      - name: Build y Push Client
+        uses: docker/build-push-action@v4
+        with:
+          context: ./client
+          file: ./client/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/consultora-frontend:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-frontend:cache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-frontend:cache,mode=max
