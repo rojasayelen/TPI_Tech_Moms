@@ -493,6 +493,7 @@ Este sistema permite desarrollar el frontend de forma independiente mientras el 
 ## CI/CD Pipeline
 
 ![CI/CD Pipeline](https://github.com/rojasayelen/TPI_Tech_Moms/actions/workflows/ci-cd.yml/badge.svg)
+![Test Coverage](https://img.shields.io/badge/coverage-87%25-brightgreen)
 
 ### Pipeline Automatizado con GitHub Actions
 
