@@ -8,28 +8,7 @@ const app = require('./app');
 
 const startServer = async () => {
   try {
-    console.log('========================================');
-    console.log('DIAGNOSTICO DE VARIABLES DE ENTORNO');
-    console.log('========================================');
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('PORT:', process.env.PORT || 'NOT SET');
-    console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET (length: ' + process.env.MONGODB_URI.length + ')' : 'NOT SET');
-    console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'SET (length: ' + process.env.JWT_SECRET.length + ')' : 'NOT SET');
-    console.log('========================================');
-
     logger.info('Starting server...');
-
-    if (!process.env.MONGODB_URI) {
-      console.error('ERROR: MONGODB_URI is not set!');
-      console.error('Available env vars:', Object.keys(process.env).sort());
-      throw new Error('MONGODB_URI environment variable is not set');
-    }
-
-    if (!process.env.JWT_SECRET) {
-      console.error('ERROR: JWT_SECRET is not set!');
-      throw new Error('JWT_SECRET environment variable is not set');
-    }
-
     logger.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
     logger.info('MongoDB connected successfully');
