@@ -495,14 +495,53 @@ Este sistema permite desarrollar el frontend de forma independiente mientras el 
 ![CI/CD Pipeline](https://github.com/rojasayelen/TPI_Tech_Moms/actions/workflows/ci-cd.yml/badge.svg)
 ![Test Coverage](https://img.shields.io/badge/coverage-87%25-brightgreen)
 
+### Diagrama del Pipeline DevOps
+
+```mermaid
+graph TB
+    A[Push/PR a main] --> B[GitHub Actions]
+    B --> C[Test Backend]
+    B --> D[Test Frontend]
+
+    C --> E{Tests OK?}
+    D --> E
+
+    E -->|Si| F[Build & Push Docker]
+    E -->|No| G[Pipeline falla]
+
+    F --> H[Docker Hub]
+    H --> I[Backend Image]
+    H --> J[Frontend Image]
+
+    I --> K[Render Deploy]
+    J --> K
+
+    K --> L[App en Producción]
+
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#e8f5e9
+    style D fill:#e8f5e9
+    style E fill:#fff9c4
+    style F fill:#f3e5f5
+    style G fill:#ffebee
+    style H fill:#e1f5fe
+    style I fill:#e0f2f1
+    style J fill:#e0f2f1
+    style K fill:#fce4ec
+    style L fill:#c8e6c9
+```
+
 ### Pipeline Automatizado con GitHub Actions
 
 El proyecto implementa un pipeline de CI/CD que se ejecuta automáticamente en cada push a las ramas principales.
 
 **Flujo del Pipeline:**
-1. **Test Backend**: Ejecuta tests automatizados del servidor
-2. **Build Docker**: Construye imágenes Docker del proyecto
-3. **Push to Docker Hub**: Sube las imágenes al registro
+1. **Test Backend**: Ejecuta tests automatizados del servidor con MongoDB
+2. **Test Frontend**: Ejecuta tests automatizados del cliente con Vitest
+3. **Build Docker**: Construye imágenes Docker del backend y frontend
+4. **Push to Docker Hub**: Sube las imágenes al registro
+5. **Deploy Render**: Deployment automático en producción
 
 **Configuración:**
 - Archivo: `.github/workflows/ci-cd.yml`
@@ -523,9 +562,9 @@ npm test
 ```
 
 **Coverage de Tests:**
-- 36 tests pasando
-- 4 test suites ejecutándose
-- Cobertura de modelos principales (Admin, BaseUser, Profesor)
+- 40 tests pasando (backend + frontend)
+- 87% de cobertura de código
+- Tests automatizados en cada push al repositorio
 
 ## Deployment Automático
 
