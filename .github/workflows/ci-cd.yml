@@ -65,11 +65,11 @@ jobs:
 
     - name: Instalar dependencias Client
       working-directory: ./client
-      run: npm ci
+      run: npm ci --force
 
     - name: Correr Tests Client
       working-directory: ./client
-      run: npm test -- --passWithNoTests
+      run: ./node_modules/.bin/vitest run --passWithNoTests
       timeout-minutes: 5
 
   # JOB 3: BUILD & PUSH DOCKER
