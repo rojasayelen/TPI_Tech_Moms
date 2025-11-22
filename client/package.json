@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "build:prod": "vite build --mode production",
     "serve": "vite preview --port 4173",
-    "test": "vitest --run --sequence.concurrent=false --singleThread",
+    "test": "vitest run --pool=forks --singleFork",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:e2e": "playwright test",
