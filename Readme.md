@@ -490,6 +490,42 @@ Este sistema permite desarrollar el frontend de forma independiente mientras el 
 - [ ] Seguridad avanzada
 - [ ] Mobile responsive
 
+## CI/CD Pipeline
+
+![CI/CD Pipeline](https://github.com/rojasayelen/TPI_Tech_Moms/actions/workflows/ci-cd.yml/badge.svg)
+
+### Pipeline Automatizado con GitHub Actions
+
+El proyecto implementa un pipeline de CI/CD que se ejecuta automáticamente en cada push a las ramas principales.
+
+**Flujo del Pipeline:**
+1. **Test Backend**: Ejecuta tests automatizados del servidor
+2. **Build Docker**: Construye imágenes Docker del proyecto
+3. **Push to Docker Hub**: Sube las imágenes al registro
+
+**Configuración:**
+- Archivo: `.github/workflows/ci-cd.yml`
+- Se ejecuta en: Push a `main` o Pull Requests
+- Servicios: MongoDB para tests
+- Node.js v18
+
+**Requisitos:**
+```bash
+# Tests deben pasar antes de hacer merge
+npm test
+
+# Variables configuradas en GitHub Secrets:
+# - MONGODB_URI
+# - JWT_SECRET
+# - DOCKER_USERNAME
+# - DOCKER_PASSWORD
+```
+
+**Coverage de Tests:**
+- 36 tests pasando
+- 4 test suites ejecutándose
+- Cobertura de modelos principales (Admin, BaseUser, Profesor)
+
 ## Arquitectura del Sistema
 
 ### **Backend (Implementado)**
