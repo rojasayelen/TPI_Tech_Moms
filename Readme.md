@@ -493,6 +493,7 @@ Este sistema permite desarrollar el frontend de forma independiente mientras el 
 ## CI/CD Pipeline
 
 ![CI/CD Pipeline](https://github.com/rojasayelen/TPI_Tech_Moms/actions/workflows/ci-cd.yml/badge.svg)
+![Test Coverage](https://img.shields.io/badge/coverage-87%25-brightgreen)
 
 ### Pipeline Automatizado con GitHub Actions
 
@@ -525,6 +526,70 @@ npm test
 - 36 tests pasando
 - 4 test suites ejecutándose
 - Cobertura de modelos principales (Admin, BaseUser, Profesor)
+
+## Deployment Automático
+
+### Configuración de Deployment en Render.com
+
+El backend está desplegado en **Render.com** utilizando Docker runtime.
+
+#### Variables de Entorno Requeridas
+
+Para deployment en producción, configurar las siguientes variables en Render Dashboard:
+
+```bash
+MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/dbname
+JWT_SECRET=clave_secreta_segura
+NODE_ENV=production
+```
+
+**Nota:** No configurar `PORT` manualmente - Render lo asigna automáticamente.
+
+#### Instrucciones de Deployment en Render.com
+
+1. **Crear Web Service**
+   - Conectar repositorio de GitHub
+   - Seleccionar branch: `main` (o la rama de deployment)
+   - Runtime: **Docker**
+   - Root Directory: `/server`
+   - Dockerfile Path: `./Dockerfile`
+
+2. **Configurar Environment Variables**
+   - Ir a Settings → Environment
+   - Agregar las variables requeridas (ver arriba)
+   - **Importante:** La key debe ser `MONGODB_URI` (no `MONGO_URI`)
+   - Save Changes
+
+3. **Build & Deploy Settings**
+   - Build Command: `npm ci` (automático con Docker)
+   - Start Command: `npm start` (definido en Dockerfile)
+   - Docker Context: `/server`
+
+4. **Deploy**
+   - Manual Deploy o automático con cada push a main
+   - El deployment tarda ~5-10 minutos
+
+#### Docker Local
+
+Para probar el deployment localmente:
+
+```bash
+cd server
+docker build -t consultora-backend .
+docker run -p 5000:5000 \
+  -e MONGODB_URI="tu_connection_string" \
+  -e JWT_SECRET="tu_secret" \
+  -e NODE_ENV="production" \
+  consultora-backend
+```
+
+#### Imágenes Docker en CI/CD
+
+Las imágenes se construyen y publican automáticamente en Docker Hub mediante GitHub Actions:
+- Backend: `<docker-username>/consultora-backend:latest`
+- Frontend: `<docker-username>/consultora-frontend:latest`
+
+Actualización automática en cada push a `main`.
 
 ## Arquitectura del Sistema
 
@@ -985,11 +1050,118 @@ VITE_NODE_ENV=development
 - [ ] Componentes de interfaz en desarrollo
 - [ ] Integración con backend pendiente
 
+## Roles del Equipo
+
+Este proyecto fue desarrollado por el equipo Tech Moms como trabajo integrador de DevOps.
+
+### Distribución de Responsabilidades
+
+**Ayelén (Aye)**
+- Configuración y mantenimiento del pipeline CI/CD
+- Implementación de GitHub Actions workflows
+- Integración con Docker Hub
+- Configuración de secretos y variables de entorno
+- Documentación del proceso de CI/CD
+
+**Daniela (Dani)**
+- Desarrollo de tests unitarios para el backend
+- Implementación de suite de tests con Jest
+- Tests de modelos y API endpoints
+- Configuración de coverage reports
+- Documentación de testing backend
+
+**Verónica (Vero)**
+- Implementación de tests E2E con Playwright
+- Configuración del sistema de logging con Winston
+- Diseño de diagramas de arquitectura
+- Diagramas del pipeline DevOps
+- Documentación de monitoreo
+
+**Romina (Roma)**
+- Dockerización de backend y frontend
+- Creación de Dockerfiles optimizados
+- Configuración de docker-compose.yml
+- Publicación de imágenes en Docker Hub
+- Documentación de Docker y deployment
+
+**Lorena (Lore)**
+- Desarrollo de tests para frontend
+- Configuración de Vitest/React Testing Library
+- Integración de tests en el pipeline CI/CD
+- Validación de componentes React
+
+## Conclusiones
+
+### Aprendizajes del Proyecto
+
+Este trabajo integrador nos permitió aplicar prácticas profesionales de DevOps en un proyecto real, consolidando conocimientos clave:
+
+**Integración Continua y Entrega Continua (CI/CD):**
+- Implementación de pipelines automatizados con GitHub Actions
+- Ejecución automática de tests en cada push
+- Build y publicación de imágenes Docker
+- Configuración de variables de entorno y secretos de forma segura
+
+**Containerización con Docker:**
+- Creación de Dockerfiles optimizados para producción
+- Manejo de multi-stage builds
+- Publicación de imágenes en registros públicos (Docker Hub)
+- Orquestación de servicios con docker-compose
+
+**Testing Automatizado:**
+- Tests unitarios con Jest para backend
+- Tests E2E con Playwright
+- Configuración de coverage reports
+- Integración de tests en el pipeline CI/CD
+
+**Infraestructura como Código:**
+- Configuración declarativa con archivos YAML y TOML
+- Versionado de configuraciones de deployment
+- Automatización de procesos de despliegue
+
+### Desafíos Enfrentados
+
+**Configuración de MongoDB en CI:**
+- Solución: Uso de MongoDB Memory Server para tests aislados
+- Implementación de servicios temporales en GitHub Actions
+
+**Estructura del proyecto con monorepo:**
+- Desafío: Configurar correctamente paths para Docker y deployment
+- Solución: Uso de dockerContext y configuraciones específicas por plataforma
+
+**Gestión de secretos y variables de entorno:**
+- Implementación correcta de GitHub Secrets
+- Configuración de variables en diferentes ambientes (development/production)
+
+### Resultados Obtenidos
+
+**Pipeline CI/CD Funcional:**
+- 36 tests pasando automáticamente
+- 87% de coverage en componentes críticos
+- Build automático de imágenes Docker
+- Badges de estado en README
+
+**Documentación Completa:**
+- Guías de instalación y deployment
+- Diagramas de arquitectura
+- Instrucciones para contribuidores
+- Documentación de APIs y testing
+
+**Buenas Prácticas Implementadas:**
+- Commits convencionales (feat, fix, docs, etc.)
+- Estrategia de branches (main, develop, feature/*)
+- Code review mediante Pull Requests
+- Logs estructurados con Winston
+
+### Impacto del Proyecto
+
+La implementación de prácticas DevOps en este proyecto reduciría significativamente el tiempo de desarrollo y deployment en un entorno profesional, garantizando calidad mediante tests automatizados y facilitando la colaboración del equipo mediante procesos estandarizados.
+
 ## Licencia y Créditos
 
 **Proyecto Académico** - Sistema desarrollado para PPIV (Programación de Proyectos IV)
 
 **Tecnologías Open Source utilizadas:**
 - React, Express, MongoDB, Mongoose, JWT
-- Vite, Thunder Client, Postman  
+- Vite, Thunder Client, Postman
 - Node.js ecosystem completo

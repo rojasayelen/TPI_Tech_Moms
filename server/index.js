@@ -1,10 +1,14 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const mongoose = require('mongoose');
 const logger = require('./config/logger');
 const app = require('./app');
 
 const startServer = async () => {
   try {
+    logger.info('Starting server...');
     logger.info('Connecting to MongoDB...');
     await mongoose.connect(process.env.MONGODB_URI);
     logger.info('MongoDB connected successfully');
