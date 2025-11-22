@@ -27,10 +27,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-
-    - name: Limpiar cache npm
-      working-directory: ./server
-      run: npm cache clean --force
+        cache: 'npm'
+        cache-dependency-path: server/package-lock.json
 
     - name: Instalar dependencias Server
       working-directory: ./server
@@ -62,10 +60,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-
-    - name: Limpiar cache npm
-      working-directory: ./client
-      run: npm cache clean --force
+        cache: 'npm'
+        cache-dependency-path: client/package-lock.json
 
     - name: Instalar dependencias Client
       working-directory: ./client
@@ -74,6 +70,7 @@ jobs:
     - name: Correr Tests Client
       working-directory: ./client
       run: npm test
+      timeout-minutes: 2
 
   # JOB 3: BUILD & PUSH DOCKER
   build-push-docker:
