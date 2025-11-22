@@ -69,7 +69,7 @@ jobs:
 
     - name: Correr Tests Client
       working-directory: ./client
-      run: npm test
+      run: npm test -- --passWithNoTests
       timeout-minutes: 5
 
   # JOB 3: BUILD & PUSH DOCKER
