@@ -1,11 +1,7 @@
 [build]
-builder = "dockerfile"
-dockerfilePath = "server/Dockerfile"
-dockerContext = "server"
+builder = "NIXPACKS"
+buildCommand = "cd server && npm ci --only=production"
 
 [deploy]
-startCommand = "npm start"
-healthcheckPath = "/"
-healthcheckTimeout = 100
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
+startCommand = "cd server && npm start"
+watchPatterns = ["server/**"]
