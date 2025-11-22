@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 # Esto define cuándo se ejecuta: al hacer push a main o dev
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "cicd/pipeline-setup-aye" ]
   pull_request:
     branches: [ "main" ]
 
