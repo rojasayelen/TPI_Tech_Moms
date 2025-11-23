@@ -8,6 +8,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/setup.js'],
+    // Configuración minimalista - sin pool, sin threads
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
