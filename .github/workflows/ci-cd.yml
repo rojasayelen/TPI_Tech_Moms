@@ -1,9 +1,9 @@
 name: CI/CD Pipeline
 
-# Esto define cuándo se ejecuta: al hacer push a main o dev
+# Esto define cuándo se ejecuta: al hacer push a main o a tu rama de arreglo
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "fix/npm-cache-clean" ]
   pull_request:
     branches: [ "main" ]
 
@@ -34,8 +34,7 @@ jobs:
       working-directory: ./server
       run: npm ci
 
-    # Este paso correrá los tests si Dani los configuró.
-    # Si fallan, el pipeline avisará.
+    # Correr tests y generar reporte de cobertura
     - name: Correr Tests Server
       working-directory: ./server
       run: npm test
@@ -43,12 +42,14 @@ jobs:
         MONGODB_URI: ${{ secrets.MONGODB_URI }} 
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
-    - name: Subir Coverage
+    # Subir el reporte del Backend con un nombre único
+    - name: Subir Coverage Backend
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: coverage-report
+        name: coverage-backend
         path: server/coverage/    
+
   # JOB 2: TEST FRONTEND (CLIENT)
   test-frontend:
     runs-on: ubuntu-latest
@@ -65,19 +66,29 @@ jobs:
 
     - name: Instalar dependencias Client
       working-directory: ./client
+      # Usamos npm ci estándar ahora que el entorno está limpio
       run: npm ci
 
+    # Correr tests con el flag de coverage activado explícitamente
     - name: Correr Tests Client
       working-directory: ./client
-      run: npm test
-      timeout-minutes: 2
-      continue-on-error: true
+      run: npm test -- --coverage
+      timeout-minutes: 5
+
+    # Subir el reporte del Frontend con un nombre único
+    - name: Subir Coverage Frontend
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: coverage-frontend
+        path: client/coverage/
 
   # JOB 3: BUILD & PUSH DOCKER
   build-push-docker:
     needs: [test-backend, test-frontend]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # Quitamos el IF temporalmente para que pruebes el build en tu rama
+    # if: github.ref == 'refs/heads/main'
     
     steps:
       - name: Checkout código
@@ -113,3 +124,4 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/consultora-frontend:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-frontend:cache
           cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/consultora-frontend:cache,mode=max
+
