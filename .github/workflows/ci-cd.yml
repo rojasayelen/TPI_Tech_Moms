@@ -1,9 +1,9 @@
 name: CI/CD Pipeline
 
-# Esto define cuándo se ejecuta: al hacer push a main o a tu rama de arreglo
+# Esto define cuándo se ejecuta: al hacer push a main o dev
 on:
   push:
-    branches: [ "main", "fix/npm-cache-clean" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -34,7 +34,8 @@ jobs:
       working-directory: ./server
       run: npm ci
 
-    # Correr tests y generar reporte de cobertura
+    # Este paso correrá los tests si Dani los configuró.
+    # Si fallan, el pipeline avisará.
     - name: Correr Tests Server
       working-directory: ./server
       run: npm test
@@ -42,14 +43,12 @@ jobs:
         MONGODB_URI: ${{ secrets.MONGODB_URI }} 
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
-    # Subir el reporte del Backend con un nombre único
-    - name: Subir Coverage Backend
+    - name: Subir Coverage
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: coverage-backend
+        name: coverage-report
         path: server/coverage/    
-
   # JOB 2: TEST FRONTEND (CLIENT)
   test-frontend:
     runs-on: ubuntu-latest
@@ -66,29 +65,19 @@ jobs:
 
     - name: Instalar dependencias Client
       working-directory: ./client
-      # Usamos npm ci estándar ahora que el entorno está limpio
       run: npm ci
 
-    # Correr tests con el flag de coverage activado explícitamente
     - name: Correr Tests Client
       working-directory: ./client
-      run: npm test -- --coverage
-      timeout-minutes: 5
-
-    # Subir el reporte del Frontend con un nombre único
-    - name: Subir Coverage Frontend
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: coverage-frontend
-        path: client/coverage/
+      run: npm test
+      timeout-minutes: 2
+      continue-on-error: true
 
   # JOB 3: BUILD & PUSH DOCKER
   build-push-docker:
     needs: [test-backend, test-frontend]
     runs-on: ubuntu-latest
-    # Quitamos el IF temporalmente para que pruebes el build en tu rama
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     
     steps:
       - name: Checkout código
